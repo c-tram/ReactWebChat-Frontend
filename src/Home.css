@@ -1,0 +1,73 @@
+.title-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0171f1f0;
+  color: #ffffff;
+  padding: 10px;
+  font-size: 14px; /* Match the font size of the buttons */
+}
+
+/* Rest of your CSS code */
+
+
+.title {
+  display: flex;
+  align-items: center;
+  font-family: 'Fantasy', cursive;
+  font-weight: 100;
+}
+
+.title-button {
+  background-color: transparent;
+  color: #ffffff;
+  border: none;
+  font-family: 'Fantasy', cursive;
+  font-size: 25px;
+  font-weight: 100;
+  cursor: pointer;
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  gap: 100px;
+}
+
+
+.button {
+  background-color: transparent;
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  font-size: 20px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  cursor: pointer;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  background-image: url('assets/loginLogo.png');
+  background-size: cover;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.login-container {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  gap: 15px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: row; /* Align form elements vertically */
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+  font-size: 15px; /* Adjust the font size to match the button size */
+}

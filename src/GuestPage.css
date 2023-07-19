@@ -1,0 +1,139 @@
+body,
+html {
+  height: 100%;
+  margin: 0;
+}
+
+.GuestChatContainer {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  gap: 10px;
+}
+
+.tryAsGuestContainer {
+  padding: 5px;
+  bottom: 0;
+  align-items: center;
+
+}
+
+.tryAsGuestButton {
+  background-color: transparent;
+
+}
+
+.roomColumn {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  text-align: center;
+  flex-basis: 20%;
+  background-color: lightblue;
+}
+
+.roomColumn > * {
+  margin-top: 25px;
+}
+
+.chatColumn {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  text-align: center;
+  flex-basis: 60%;
+  background-color: lightgray;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.userColumn {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  text-align: center;
+  flex-basis: 20%;
+  background-color: lightgreen;
+}
+
+.chatRoomButton {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  text-align: center;
+  background-color: transparent;
+  margin-right: auto;
+}
+
+.roomItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.roomName {
+  text-align: left;
+}
+
+.roomButtons {
+  text-align: right;
+  padding-right: 5px;
+}
+
+.joinButton {
+  margin-right: 5px;
+}
+
+.messageContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  position: sticky;
+  bottom: 0;
+  background-color: white;
+}
+
+.messageInput {
+  flex-grow: 1;
+  padding: 5px;
+  margin-right: 5px;
+}
+
+.sendMessageButton {
+  padding: 5px 10px;
+}
+
+.currentChat {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.messageColumns {
+  display: flex;
+  align-items: center;
+}
+
+.messageUser {
+  flex-basis: 7%;
+  padding-right: 5px;
+  border-right: 1px solid black;
+}
+
+.messageContent {
+  flex-basis: 86%;
+  padding: 0 5px;
+}
+
+.messageTimestamp {
+  flex-basis: 7%;
+  padding-left: 5px;
+  border-left: 1px solid black;
+}
+
+.messageSeparator {
+  border: none;
+  border-top: 1px solid black;
+  margin: 10px 0;
+}
