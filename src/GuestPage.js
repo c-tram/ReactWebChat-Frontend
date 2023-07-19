@@ -17,35 +17,46 @@ const GuestPage = () => {
   const [chatName, setChatName] = useState('');
   const [backendUrl] = useState('http://localhost:3001'); // Replace with your backend server URL
 
-  useEffect(() => {
-    const fetchMessages = async () => {
-      try {
-        const response = await fetch(`${backendUrl}/messages/${currentChat}`);
-        if (response.ok) {
-          const data = await response.json();
-          setChats((prevChats) => ({
-            ...prevChats,
-            [currentChat]: data,
-          }));
-        } else {
-          console.log('Failed to fetch chat messages');
-        }
-      } catch (error) {
-        console.log('Error fetching chat messages:', error);
+  const fetchMessages = useCallback(async () => {
+    try {
+      const response = await fetch(`${backendUrl}/messages/${currentChat}`);
+      if (response.ok) {
+        const data = await response.json();
+        setChats((prevChats) => ({
+          ...prevChats,
+          [currentChat]: data,
+        }));
+      } else {
+        console.log('Failed to fetch chat messages');
       }
-    };
-
-    if (currentChat) {
-      fetchMessages();
+    } catch (error) {
+      console.log('Error fetching chat messages:', error);
     }
   }, [backendUrl, currentChat]);
 
   useEffect(() => {
+    if (currentChat) {
+      fetchMessages();
+    }
+  }, [currentChat, fetchMessages]);
+
+  useEffect(() => {
     const handleNewMessage = (newMessage) => {
-      setChats((prevChats) => ({
-        ...prevChats,
-        [newMessage.roomId]: [...(prevChats[newMessage.roomId] || []), newMessage],
-      }));
+      setChats((prevChats) => {
+        const updatedChats = {
+          ...prevChats,
+          [newMessage.roomId]: [...(prevChats[newMessage.roomId] || []), newMessage],
+        };
+
+        // If the current chat is the same as the new message's roomId, update the chat messages
+        if (newMessage.roomId === currentChat) {
+          return updatedChats;
+        } else {
+          // Otherwise, fetch the updated messages for the new message's roomId
+          fetchMessages();
+          return prevChats;
+        }
+      });
     };
 
     // Connect to the socket server
@@ -58,7 +69,7 @@ const GuestPage = () => {
       socket.off('message', handleNewMessage);
       socket.disconnect();
     };
-  }, [backendUrl, setChats]);
+  }, [backendUrl, currentChat, fetchMessages]);
 
   const saveMessage = async () => {
     if (!currentChat) {
@@ -131,13 +142,6 @@ const GuestPage = () => {
     } catch (error) {
       console.log(error.message);
       alert(error.message); // Display an alert to the user
-    }
-  };
-
-  const handleEnterKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      handleMessageSend();
     }
   };
 
@@ -225,7 +229,6 @@ const GuestPage = () => {
             type="text"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            onKeyDown={handleEnterKeyPress} // Add event listener for Enter key press
             placeholder="Type your message"
             className="messageInput"
           />
